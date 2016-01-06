@@ -144,4 +144,12 @@ public class Job {
         this.taskHistory = taskHistory;
     }
 
+    public List<TaskUsage> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<TaskUsage> tasks) {
+        this.tasks = tasks;
+    }
+
 }

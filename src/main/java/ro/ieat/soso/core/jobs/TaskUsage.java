@@ -10,6 +10,20 @@ import java.util.List;
  */
 public class TaskUsage {
     private long taskIndex;
+
+    public TaskUsage(long taskIndex, long jobId, String logicJobName) {
+        this.taskIndex = taskIndex;
+        this.jobId = jobId;
+        this.logicJobName = logicJobName;
+    }
+
+    public TaskUsage(){
+        this.taskIndex = 0;
+        this.jobId = 0;
+        this.logicJobName = "";
+    }
+
+
     private long jobId;
     private String logicJobName;
     private List<Usage> usageList = new ArrayList<Usage>();
