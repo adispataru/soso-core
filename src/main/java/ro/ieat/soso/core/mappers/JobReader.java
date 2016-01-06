@@ -24,8 +24,10 @@ public class JobReader {
 
 
             String[] tokens = line.split(",");
+
             if(!logicJobName.equals(tokens[1]))
                 continue;
+
 
             long submitTime = Long.parseLong(tokens[2]);
 
@@ -34,7 +36,7 @@ public class JobReader {
             if (submitTime > historyEnd * Configuration.TIME_DIVISOR)
                 break;
 
-
+            
             long jobId = Long.parseLong(tokens[0]);
 
             Job j = new Job();
