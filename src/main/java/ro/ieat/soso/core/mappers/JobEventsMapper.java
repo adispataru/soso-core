@@ -19,9 +19,7 @@ import java.util.Map;
 public class JobEventsMapper  {
 
 
-    private static String modifyLogicJobName(String text){
-        return text.replace("/", "-");
-    }
+
     public static void map(FileReader fileInputStream, Map<Long, Job> result, long startTime, long endTime) throws IOException, InterruptedException {
         BufferedReader br = new BufferedReader(fileInputStream);
         String line;
@@ -43,7 +41,7 @@ public class JobEventsMapper  {
                 return;
 
             int event = Integer.parseInt(tokens[3]);
-            String logicJobName = modifyLogicJobName(tokens[7]);
+            String logicJobName = tokens[7];
             String scheduleClass = tokens[5];
             String status = " ";
             long submitTime = 0;
