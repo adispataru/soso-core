@@ -36,7 +36,7 @@ public class JobReader {
             if (submitTime > historyEnd * Configuration.TIME_DIVISOR)
                 break;
 
-            
+
             long jobId = Long.parseLong(tokens[0]);
 
             Job j = new Job();

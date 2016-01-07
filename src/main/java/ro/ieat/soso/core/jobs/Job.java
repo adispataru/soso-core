@@ -17,6 +17,7 @@ public class Job {
     private long scheduleTime;
     private long finishTime;
     private String status;
+    private long taskSize;
 
     public Job(long jobId, String logicJobName, List<TaskUsage> task, long submitTime, long scheduleTime, long finishTime, String status) {
         this.jobId = jobId;
@@ -152,4 +153,11 @@ public class Job {
         this.tasks = tasks;
     }
 
+    public long getTaskSize() {
+        return taskSize;
+    }
+
+    public void setTaskSize(long taskSize) {
+        this.taskSize = taskSize;
+    }
 }
