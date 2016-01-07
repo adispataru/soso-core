@@ -46,6 +46,7 @@ public class JobReader {
             j.setScheduleTime(Long.parseLong(tokens[3]));
             j.setFinishTime(Long.parseLong(tokens[4]));
             j.setStatus(tokens[5]);
+            j.setTaskSize(Long.parseLong(tokens[6]));
             result.add(j);
 
         }
