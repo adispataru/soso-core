@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * Created by adrian on 25.11.2015.
  */
-public class Prediction<T> {
+public class Prediction<T extends Number> {
 
     private long startTime;
     private long endTime;
@@ -192,6 +192,7 @@ public class Prediction<T> {
         }
         return result;
     }
+
 
     //TODO Add prediction which minimizes importance as time passes
     //TODO Add linear regression prediction
