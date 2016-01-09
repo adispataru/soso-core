@@ -1,9 +1,14 @@
 package ro.ieat.soso.core.coalitions;
 
 
+import ro.ieat.soso.core.jobs.Job;
 import ro.ieat.soso.core.jobs.ScheduledJob;
 import ro.ieat.soso.core.prediction.Prediction;
+import ro.ieat.soso.core.time.LongInterval;
+import ro.ieat.soso.core.time.LongIntervalNode;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +24,8 @@ public class Coalition implements Comparable<Coalition>{
     private Map<String, Long> jobs;
     private Prediction<Long> currentETA;
     private List<ScheduledJob> scheduledJobs;
+
+    private List<LongIntervalNode> intervalNodesList=new ArrayList<>();
 
     public String getLogicJobName() {
         return logicJobName;
@@ -95,4 +102,17 @@ public class Coalition implements Comparable<Coalition>{
     public Long getJobHistoryFinishTime(String logicJobName){
         return jobs.get(logicJobName);
     }
+
+
+
+    public void addIntervalNode(LongIntervalNode in){
+        this.intervalNodesList.add(in);
+    }
+
+    public void removeIntervalNode(LongIntervalNode i){
+
+        intervalNodesList.remove(i);
+    }
+
+    
 }
