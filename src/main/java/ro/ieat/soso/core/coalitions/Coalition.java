@@ -91,4 +91,8 @@ public class Coalition implements Comparable<Coalition>{
         return this.machines.size()-c.getMachines().size();
     }
 
+
+    public Long getJobHistoryFinishTime(String logicJobName){
+        return jobs.get(logicJobName);
+    }
 }
