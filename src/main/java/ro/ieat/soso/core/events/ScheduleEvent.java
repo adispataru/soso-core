@@ -1,5 +1,7 @@
 package ro.ieat.soso.core.events;
 
+import ro.ieat.soso.core.coalitions.Coalition;
+
 /**
  * Created by adrian on 11.12.2015.
  */
@@ -11,6 +13,15 @@ public class ScheduleEvent {
     private long start;
     private long end;
 
+    private Coalition coalition;
+
+    public void setCoalition(Coalition coalition){
+        this.coalition=coalition;
+    }
+
+    public Coalition getCoalition(){
+        return coalition;
+    }
 
     public long getEnd() {
         return end;
