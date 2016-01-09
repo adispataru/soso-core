@@ -1,6 +1,7 @@
 package ro.ieat.soso.core.events;
 
 import ro.ieat.soso.core.coalitions.Coalition;
+import ro.ieat.soso.core.jobs.Job;
 
 /**
  * Created by adrian on 11.12.2015.
@@ -14,6 +15,7 @@ public class ScheduleEvent {
     private long end;
 
     private Coalition coalition;
+    private Job job;
 
     public void setCoalition(Coalition coalition){
         this.coalition=coalition;
@@ -21,6 +23,14 @@ public class ScheduleEvent {
 
     public Coalition getCoalition(){
         return coalition;
+    }
+
+    public void setJob(Job job){
+        this.job=job;
+    }
+
+    public Job getJob(){
+        return job;
     }
 
     public long getEnd() {
