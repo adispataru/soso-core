@@ -50,6 +50,8 @@ public class JobReader {
             result.add(j);
 
         }
+        br.close();
+
 
         return result;
     }

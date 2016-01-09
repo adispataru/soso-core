@@ -3,13 +3,15 @@ package ro.ieat.soso.core.coalitions;
 import ro.ieat.soso.core.jobs.TaskUsage;
 import ro.ieat.soso.core.prediction.Prediction;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by adrian on 25.11.2015.
  */
-public class Machine {
+public class Machine implements Serializable{
+    private static final long serialVersionUID = 5494991936696578350L;
     private Long id;
     private Prediction<Double> estimatedCPULoad;
     private Prediction<Double> estimatedMemoryLoad;

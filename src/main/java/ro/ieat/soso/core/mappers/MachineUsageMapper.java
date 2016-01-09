@@ -157,7 +157,6 @@ public class MachineUsageMapper {
             usage.setDisk(Double.parseDouble(tokens[6]));
             usage.setMaxDisk(Double.parseDouble(tokens[7]));
 
-            System.out.println(" --> " + usage.getEndTime() + " " + Configuration.TIME_DIVISOR);
 
             if(usage.getStartTime() / Configuration.TIME_DIVISOR % Configuration.STEP != 0){
                 for (Usage usage2 : taskUsage.getUsageList()){
