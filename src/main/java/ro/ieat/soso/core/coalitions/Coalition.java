@@ -114,5 +114,5 @@ public class Coalition implements Comparable<Coalition>{
         intervalNodesList.remove(i);
     }
 
-    
+
 }
