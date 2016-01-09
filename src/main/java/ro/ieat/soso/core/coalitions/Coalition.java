@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by adrian on 25.11.2015.
  */
-public class Coalition {
+public class Coalition implements Comparable<Coalition>{
     private long id;
     private long rackId;
     private String logicJobName;
@@ -84,6 +84,11 @@ public class Coalition {
 
     public void setScheduledJobs(List<ScheduledJob> scheduledJobs) {
         this.scheduledJobs = scheduledJobs;
+    }
+
+    @Override
+    public int compareTo(Coalition c) {
+        return this.machines.size()-c.getMachines().size();
     }
 
 }
