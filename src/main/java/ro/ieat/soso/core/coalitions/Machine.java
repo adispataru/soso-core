@@ -1,7 +1,8 @@
 package ro.ieat.soso.core.coalitions;
 
 import ro.ieat.soso.core.jobs.TaskUsage;
-import ro.ieat.soso.core.prediction.Prediction;
+import ro.ieat.soso.core.prediction.DurationPrediction;
+import ro.ieat.soso.core.prediction.MachinePrediction;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,10 +14,8 @@ import java.util.List;
 public class Machine implements Serializable{
     private static final long serialVersionUID = 5494991936696578350L;
     private Long id;
-    private Prediction<Double> estimatedCPULoad;
-    private Prediction<Double> estimatedMemoryLoad;
-    private Prediction<Double> estimatedDiskLoad;
-    private Prediction<Long> ETA;
+    private MachinePrediction prediction;
+    private DurationPrediction ETA;
     private Double cpu;
     private Double memory;
     private List<TaskUsage> taskUsageList;
@@ -27,38 +26,6 @@ public class Machine implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Prediction<Double> getEstimatedCPULoad() {
-        return estimatedCPULoad;
-    }
-
-    public void setEstimatedCPULoad(Prediction<Double> estimatedCPULoad) {
-        this.estimatedCPULoad = estimatedCPULoad;
-    }
-
-    public Prediction<Double> getEstimatedMemoryLoad() {
-        return estimatedMemoryLoad;
-    }
-
-    public void setEstimatedMemoryLoad(Prediction<Double> estimatedMemoryLoad) {
-        this.estimatedMemoryLoad = estimatedMemoryLoad;
-    }
-
-    public Prediction<Double> getEstimatedDiskLoad() {
-        return estimatedDiskLoad;
-    }
-
-    public void setEstimatedDiskLoad(Prediction<Double> estimatedDiskLoad) {
-        this.estimatedDiskLoad = estimatedDiskLoad;
-    }
-
-    public Prediction<Long> getETA() {
-        return ETA;
-    }
-
-    public void setETA(Prediction<Long> ETA) {
-        this.ETA = ETA;
     }
 
     public Double getCpu() {
@@ -85,5 +52,13 @@ public class Machine implements Serializable{
 
     public void setTaskUsageList(List<TaskUsage> taskUsageList) {
         this.taskUsageList = taskUsageList;
+    }
+
+    public MachinePrediction getPrediction() {
+        return prediction;
+    }
+
+    public void setPrediction(MachinePrediction prediction) {
+        this.prediction = prediction;
     }
 }

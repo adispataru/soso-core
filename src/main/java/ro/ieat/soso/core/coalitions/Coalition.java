@@ -1,14 +1,11 @@
 package ro.ieat.soso.core.coalitions;
 
 
-import ro.ieat.soso.core.jobs.Job;
 import ro.ieat.soso.core.jobs.ScheduledJob;
-import ro.ieat.soso.core.prediction.Prediction;
-import ro.ieat.soso.core.time.LongInterval;
+import ro.ieat.soso.core.prediction.DurationPrediction;
 import ro.ieat.soso.core.time.LongIntervalNode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +19,10 @@ public class Coalition implements Comparable<Coalition>{
     private long scheduleClass;
     private List<Machine> machines=new ArrayList<>();
     private Map<String, Long> jobs;
-    private Prediction<Long> currentETA;
     private List<ScheduledJob> scheduledJobs=new ArrayList<>();
-
     private List<LongIntervalNode> intervalNodesList=new ArrayList<>();
+    private DurationPrediction currentETA;
+
 
     public String getLogicJobName() {
         return logicJobName;
@@ -63,15 +60,6 @@ public class Coalition implements Comparable<Coalition>{
         this.jobs = jobs;
     }
 
-    public Prediction<Long> getCurrentETA() {
-        return currentETA;
-    }
-
-    public void setCurrentETA(Prediction<Long> currentETA) {
-        this.currentETA = currentETA;
-    }
-
-
 
     public long getId() {
         return id;
@@ -97,6 +85,7 @@ public class Coalition implements Comparable<Coalition>{
         this.scheduledJobs = scheduledJobs;
     }
 
+
     @Override
     public int compareTo(Coalition c) {
         return this.machines.size()-c.getMachines().size();
@@ -118,5 +107,14 @@ public class Coalition implements Comparable<Coalition>{
         intervalNodesList.remove(i);
     }
 
+
+
+    public DurationPrediction getCurrentETA() {
+        return currentETA;
+    }
+
+    public void setCurrentETA(DurationPrediction currentETA) {
+        this.currentETA = currentETA;
+    }
 
 }

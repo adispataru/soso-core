@@ -3,6 +3,7 @@ package ro.ieat.soso.core.coalitions;
 /**
  * Created by adrian on 25.11.2015.
  */
+
 public class Usage {
     public long getStartTime() {
         return startTime;
