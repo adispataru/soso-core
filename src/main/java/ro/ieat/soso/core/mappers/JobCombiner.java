@@ -4,7 +4,6 @@ import ro.ieat.soso.core.jobs.Job;
 import ro.ieat.soso.core.jobs.TaskHistory;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -16,7 +15,7 @@ public class JobCombiner {
     public static void reduce (Long key, Job iterator) throws InterruptedException, IOException{
         Map<Long, TaskHistory> tasks = new TreeMap<Long, TaskHistory>();
 
-        for (TaskHistory job : iterator.getTaskHistory()){
+        for (TaskHistory job : iterator.getTaskHistory().values()){
             //TODO Add task usages to taskHistories. when reading.
                 long taskIndex = job.getTaskIndex();
                 if(tasks.containsKey(taskIndex)){
@@ -26,7 +25,7 @@ public class JobCombiner {
                 }
         }
 
-        iterator.setTaskHistory(new ArrayList<>(tasks.values()));
+        iterator.setTaskHistory(tasks);
 
 
     }

@@ -71,7 +71,7 @@ public class TaskEventsMapper {
 
             if (!result.containsKey(jobId))
                 System.out.println(startTime + " " + endTime*1000000  + " " + timestamp + ";jobid: " + jobId);
-            result.get(jobId).getTaskHistory().add(task);
+            result.get(jobId).getTaskHistory().put(task.getTaskIndex(), task);
 
         }
         br.close();

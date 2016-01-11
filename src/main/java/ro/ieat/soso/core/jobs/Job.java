@@ -1,7 +1,7 @@
 package ro.ieat.soso.core.jobs;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by adrian on 23.11.2015.
@@ -10,7 +10,7 @@ public class Job {
 
     private long jobId;
     private String logicJobName;
-    private List<TaskHistory> taskHistory;
+    private Map<Long, TaskHistory> taskHistory;
 
     private long submitTime;
     private long scheduleTime;
@@ -25,7 +25,7 @@ public class Job {
         this.scheduleTime = scheduleTime;
         this.finishTime = finishTime;
         this.status = status;
-        this.taskHistory = new ArrayList<TaskHistory>();
+        this.taskHistory = new TreeMap<>();
     }
 
     public Job(Job job){
@@ -35,7 +35,7 @@ public class Job {
         this.scheduleTime = job.scheduleTime;
         this.finishTime = job.finishTime;
         this.status = job.status;
-        this.taskHistory = new ArrayList<TaskHistory>();
+        this.taskHistory = new TreeMap<>();
     }
 
     public Job(Job job, boolean noUsage){
@@ -45,9 +45,9 @@ public class Job {
         this.scheduleTime = job.scheduleTime;
         this.finishTime = job.finishTime;
         this.status = job.status;
-        this.taskHistory = new ArrayList<TaskHistory>();
-        for(TaskHistory th : job.getTaskHistory()){
-            this.taskHistory.add(new TaskHistory(th));
+        this.taskHistory = new TreeMap<>();
+        for(TaskHistory th : job.getTaskHistory().values()){
+            this.taskHistory.put(th.getTaskIndex(), new TaskHistory(th));
         }
     }
 
@@ -77,7 +77,6 @@ public class Job {
         task.setScheduleTime(Long.parseLong(tokens[8]));
         task.setFinishTime(Long.parseLong(tokens[9]));
         task.setStatus(tokens[10]);
-        this.getTaskHistory().add(task);
 
     }
 
@@ -146,11 +145,11 @@ public class Job {
     }
 
 
-    public List<TaskHistory> getTaskHistory() {
+    public Map<Long, TaskHistory> getTaskHistory() {
         return taskHistory;
     }
 
-    public void setTaskHistory(List<TaskHistory> taskHistory) {
+    public void setTaskHistory(Map<Long, TaskHistory> taskHistory) {
         this.taskHistory = taskHistory;
     }
 

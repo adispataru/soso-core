@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
  */
 public class TaskUsageMapper  {
     private static Pattern pattern = Pattern.compile(",");
+    private static long counter = 0;
 
     public static void map(FileReader fileReader, Map<Long, Job> result, long start, long end) throws IOException, InterruptedException {
 
@@ -81,16 +82,15 @@ public class TaskUsageMapper  {
 //            if (!result.containsKey(jobId))
 //                result.put(jobId, new ArrayList<JobWritable>());
             //Assume it exitsts already.
-            for(TaskHistory t : result.get(jobId).getTaskHistory()){
+            TaskHistory t = result.get(jobId).getTaskHistory().get(taskIndex);
+            System.out.printf("%d\n", counter++);
+            if(t.getTaskIndex() == taskIndex)
+                if(t.getTaskUsage() != null) {
+                    t.getTaskUsage().combineUsage(task);
+                }else{
+                    t.setTaskUsage(task);
+                }
 
-                if(t.getTaskIndex() == taskIndex)
-                    if(t.getTaskUsage() != null) {
-                        t.getTaskUsage().combineUsage(task);
-                    }else{
-                        t.setTaskUsage(task);
-                    }
-
-            }
         }
         br.close();
         fileReader.close();

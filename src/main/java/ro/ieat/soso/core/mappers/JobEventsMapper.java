@@ -2,12 +2,10 @@ package ro.ieat.soso.core.mappers;
 
 
 import ro.ieat.soso.core.jobs.Job;
-import ro.ieat.soso.core.jobs.TaskHistory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -82,7 +80,7 @@ public class JobEventsMapper  {
             job = new Job(jobId,logicJobName,
                     submitTime, scheduleTime, finishTime, status);
             job.setScheduleClass(Long.parseLong(scheduleClass));
-            job.setTaskHistory(new ArrayList<TaskHistory>());
+
 
             if (!result.containsKey(jobId)) {
                 result.put(jobId, job);
