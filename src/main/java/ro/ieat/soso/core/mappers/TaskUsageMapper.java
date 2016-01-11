@@ -36,11 +36,11 @@ public class TaskUsageMapper  {
 
         double cpu;
         double mem;
-        double disk;
-        double maxCpu;
+        double disk = .0;
+        double maxCpu = .0;
         double maxMemory;
 
-        double maxDisk;
+        double maxDisk = .0;
 
         String[] tokens;
         for(String line; (line = br.readLine()) != null; ) {
@@ -59,14 +59,17 @@ public class TaskUsageMapper  {
 
             cpu = Double.parseDouble(tokens[5]);
             mem = Double.parseDouble(tokens[6]);
-            disk = Double.parseDouble(tokens[12]);
-            maxCpu = Double.parseDouble(tokens[13]);
             maxMemory = Double.parseDouble(tokens[10]);
+            if(tokens.length > 10) {
+                disk = Double.parseDouble(tokens[12]);
+                maxCpu = Double.parseDouble(tokens[13]);
 
-            maxDisk = .0;
-            if(tokens[14].length() > 0)
-                maxDisk = Double.parseDouble(tokens[14]);
 
+                maxDisk = .0;
+                if (tokens[14].length() > 0)
+                    maxDisk = Double.parseDouble(tokens[14]);
+
+            }
 
             Usage usage = new Usage(startTime, endTime, cpu, mem, disk);
             usage.setMaxCpu(maxCpu);
