@@ -84,7 +84,12 @@ public class TaskUsageMapper  {
             for(TaskHistory t : result.get(jobId).getTaskHistory()){
 
                 if(t.getTaskIndex() == taskIndex)
-                    t.getTaskUsage().combineUsage(task);
+                    if(t.getTaskUsage() != null) {
+                        t.getTaskUsage().combineUsage(task);
+                    }else{
+                        t.setTaskUsage(task);
+                    }
+
             }
         }
         br.close();
