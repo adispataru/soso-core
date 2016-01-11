@@ -59,4 +59,20 @@ public class TaskUsage {
     public void setLogicJobName(String logicJobName) {
         this.logicJobName = logicJobName;
     }
+
+    public void combineUsage(TaskUsage t){
+        for(Usage u : t.getUsageList()) {
+            boolean found = false;
+            for (int i = 0; !found && i < usageList.size(); i++) {
+                if(usageList.get(i).getStartTime() == u.getStartTime())
+                    break;
+                if (usageList.get(i).getStartTime() > u.getStartTime()){
+                    found = true;
+                    usageList.add(i, u);
+                }
+            }
+            if(!found)
+                usageList.add(u);
+        }
+    }
 }

@@ -10,7 +10,6 @@ public class Job {
 
     private long jobId;
     private String logicJobName;
-    private List<TaskUsage> tasks;
     private List<TaskHistory> taskHistory;
 
     private long submitTime;
@@ -19,26 +18,37 @@ public class Job {
     private String status;
     private long taskSize;
 
-    public Job(long jobId, String logicJobName, List<TaskUsage> task, long submitTime, long scheduleTime, long finishTime, String status) {
+    public Job(long jobId, String logicJobName, long submitTime, long scheduleTime, long finishTime, String status) {
         this.jobId = jobId;
         this.logicJobName = logicJobName;
-        this.tasks = task;
         this.submitTime = submitTime;
         this.scheduleTime = scheduleTime;
         this.finishTime = finishTime;
         this.status = status;
+        this.taskHistory = new ArrayList<TaskHistory>();
     }
 
     public Job(Job job){
         this.jobId = job.jobId;
         this.logicJobName = job.logicJobName;
-        this.tasks = job.tasks;
         this.submitTime = job.submitTime;
         this.scheduleTime = job.scheduleTime;
         this.finishTime = job.finishTime;
         this.status = job.status;
-        this.tasks = new ArrayList<TaskUsage>();
         this.taskHistory = new ArrayList<TaskHistory>();
+    }
+
+    public Job(Job job, boolean noUsage){
+        this.jobId = job.jobId;
+        this.logicJobName = job.logicJobName;
+        this.submitTime = job.submitTime;
+        this.scheduleTime = job.scheduleTime;
+        this.finishTime = job.finishTime;
+        this.status = job.status;
+        this.taskHistory = new ArrayList<TaskHistory>();
+        for(TaskHistory th : job.getTaskHistory()){
+            this.taskHistory.add(new TaskHistory(th));
+        }
     }
 
     private long scheduleClass;
@@ -46,7 +56,6 @@ public class Job {
     public Job(){
         this.jobId = 0L;
         this.logicJobName = "0";
-        this.tasks = new ArrayList<TaskUsage>();
         this.submitTime = 0L;
         this.scheduleTime = 0L;
         this.finishTime = 0L;
@@ -76,7 +85,7 @@ public class Job {
     @Override
     public String toString(){
 
-        return String.valueOf(jobId) + "," + logicJobName + "," + submitTime + "," + scheduleTime + "," + finishTime + "," + status + "," + tasks.size();
+        return String.valueOf(jobId) + "," + logicJobName + "," + submitTime + "," + scheduleTime + "," + finishTime + "," + status + "," + taskHistory.size();
     }
 
     public long getScheduleClass() {
@@ -143,14 +152,6 @@ public class Job {
 
     public void setTaskHistory(List<TaskHistory> taskHistory) {
         this.taskHistory = taskHistory;
-    }
-
-    public List<TaskUsage> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<TaskUsage> tasks) {
-        this.tasks = tasks;
     }
 
     public long getTaskSize() {

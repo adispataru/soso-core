@@ -39,6 +39,20 @@ public class TaskHistory {
         this.status = status;
     }
 
+    public TaskHistory(TaskHistory t){
+        taskIndex = t.getTaskIndex();
+        submitTime = t.getSubmitTime();
+        scheduleTime = t.getScheduleTime();
+        finishTime = t.getFinishTime();
+        status = t.getStatus();
+
+        machineId = t.getMachineId();
+        requestedCPU = t.getRequestedCPU();
+        requestedMemory = t.getRequestedMemory();
+        requestedDisk = t.getRequestedDisk();
+        TaskUsage taskUsage = null;
+    }
+
 
     public long getTaskIndex() {
         return taskIndex;

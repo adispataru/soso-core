@@ -3,6 +3,7 @@ package ro.ieat.soso.core.mappers;
 
 import ro.ieat.soso.core.coalitions.Usage;
 import ro.ieat.soso.core.jobs.Job;
+import ro.ieat.soso.core.jobs.TaskHistory;
 import ro.ieat.soso.core.jobs.TaskUsage;
 
 import java.io.BufferedReader;
@@ -80,7 +81,11 @@ public class TaskUsageMapper  {
 //            if (!result.containsKey(jobId))
 //                result.put(jobId, new ArrayList<JobWritable>());
             //Assume it exitsts already.
-            result.get(jobId).getTasks().add(task);
+            for(TaskHistory t : result.get(jobId).getTaskHistory()){
+
+                if(t.getTaskIndex() == taskIndex)
+                    t.getTaskUsage().combineUsage(task);
+            }
         }
         br.close();
         fileReader.close();

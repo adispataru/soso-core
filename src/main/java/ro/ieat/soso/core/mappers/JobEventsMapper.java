@@ -3,7 +3,6 @@ package ro.ieat.soso.core.mappers;
 
 import ro.ieat.soso.core.jobs.Job;
 import ro.ieat.soso.core.jobs.TaskHistory;
-import ro.ieat.soso.core.jobs.TaskUsage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -80,7 +79,7 @@ public class JobEventsMapper  {
                             status = "update";
                     }
             }
-            job = new Job(jobId,logicJobName, new ArrayList<TaskUsage>(),
+            job = new Job(jobId,logicJobName,
                     submitTime, scheduleTime, finishTime, status);
             job.setScheduleClass(Long.parseLong(scheduleClass));
             job.setTaskHistory(new ArrayList<TaskHistory>());
