@@ -38,7 +38,7 @@ public class TaskUsageMapper  {
         double mem;
         double disk = .0;
         double maxCpu = .0;
-        double maxMemory;
+        double maxMemory = .0;
 
         double maxDisk = .0;
 
@@ -59,8 +59,8 @@ public class TaskUsageMapper  {
 
             cpu = Double.parseDouble(tokens[5]);
             mem = Double.parseDouble(tokens[6]);
-            maxMemory = Double.parseDouble(tokens[10]);
-            if(tokens.length > 10) {
+            if(tokens.length > 9) {
+                maxMemory = Double.parseDouble(tokens[10]);
                 disk = Double.parseDouble(tokens[12]);
                 maxCpu = Double.parseDouble(tokens[13]);
 
