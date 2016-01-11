@@ -83,7 +83,6 @@ public class TaskUsageMapper  {
 //                result.put(jobId, new ArrayList<JobWritable>());
             //Assume it exitsts already.
             TaskHistory t = result.get(jobId).getTaskHistory().get(taskIndex);
-            System.out.printf("%d\n", counter++);
             if(t.getTaskIndex() == taskIndex)
                 if(t.getTaskUsage() != null) {
                     t.getTaskUsage().combineUsage(task);

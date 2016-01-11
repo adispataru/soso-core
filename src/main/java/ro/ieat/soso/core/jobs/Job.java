@@ -1,5 +1,7 @@
 package ro.ieat.soso.core.jobs;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,6 +12,7 @@ public class Job {
 
     private long jobId;
     private String logicJobName;
+    @JsonSerialize(as=Map.class)
     private Map<Long, TaskHistory> taskHistory;
 
     private long submitTime;
