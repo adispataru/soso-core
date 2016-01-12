@@ -49,8 +49,12 @@ public class Job {
         this.finishTime = job.finishTime;
         this.status = job.status;
         this.taskHistory = new TreeMap<>();
-        for(TaskHistory th : job.getTaskHistory().values()){
-            this.taskHistory.put(th.getTaskIndex(), new TaskHistory(th));
+        if(noUsage == true) {
+            for (TaskHistory th : job.getTaskHistory().values()) {
+                this.taskHistory.put(th.getTaskIndex(), new TaskHistory(th));
+            }
+        }else{
+            this.taskHistory = job.getTaskHistory();
         }
     }
 
