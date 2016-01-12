@@ -61,4 +61,12 @@ public class Machine implements Serializable{
     public void setPrediction(MachinePrediction prediction) {
         this.prediction = prediction;
     }
+
+    public DurationPrediction getETA() {
+        return ETA;
+    }
+
+    public void setETA(DurationPrediction ETA) {
+        this.ETA = ETA;
+    }
 }
