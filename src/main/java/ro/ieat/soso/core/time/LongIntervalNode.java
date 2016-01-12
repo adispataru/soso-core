@@ -100,9 +100,9 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
 
         }else {
             if (this.getParent() != null)
-                bf.append("Name=" + coalitionList + "--val=" + (this.getKey() / 1000000) + "-->interval=" + this.interval + "--max=" + this.max + "--min=" + (this.min / 1000000) + "--color=" + this.getColor() + "-parent=" + this.getParent().getKey());
+                bf.append("Key+"+this.getKey()  + "--val=" + (this.getKey() / 1000000) + "-->interval=" + this.interval + "--max=" + this.max + "--min=" + (this.min / 1000000) + "--color=" + this.getColor() + "-parent=" + this.getParent().getKey());
             else
-                bf.append("Name=" + coalitionList + "--val=" + (this.getKey() / 1000000) + "-->interval=" + this.interval + "max=" + this.max + "--min=" + (this.min / 1000000) + "-color=" + this.getColor() + "-parent=none");
+                bf.append("Key+"+this.getKey()  + "--val=" + (this.getKey() / 1000000) + "-->interval=" + this.interval + "max=" + this.max + "--min=" + (this.min / 1000000) + "-color=" + this.getColor() + "-parent=none");
 
         }
         return bf.toString();
