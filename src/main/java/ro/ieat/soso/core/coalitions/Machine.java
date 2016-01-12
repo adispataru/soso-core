@@ -20,6 +20,12 @@ public class Machine implements Serializable{
     private Double memory;
     private List<TaskUsage> taskUsageList;
 
+    public Machine(long id, double cpu, double mem){
+        this.id = id;
+        this.cpu = cpu;
+        this.memory = mem;
+    }
+
     public Long getId() {
         return id;
     }
@@ -69,4 +75,6 @@ public class Machine implements Serializable{
     public void setETA(DurationPrediction ETA) {
         this.ETA = ETA;
     }
+
+
 }
