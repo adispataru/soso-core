@@ -26,6 +26,10 @@ public class Machine implements Serializable{
         this.memory = mem;
     }
 
+    public Machine(){
+
+    }
+
     public Long getId() {
         return id;
     }
