@@ -24,6 +24,7 @@ public class Coalition implements Comparable<Coalition>{
     private List<ScheduledJob> scheduledJobs=new ArrayList<>();
     private List<LongIntervalNode> intervalNodesList=new ArrayList<>();
     private DurationPrediction currentETA;
+    private Double confidenceLevel;
 
 
     public String getLogicJobName() {
@@ -119,4 +120,11 @@ public class Coalition implements Comparable<Coalition>{
         this.currentETA = currentETA;
     }
 
+    public Double getConfidenceLevel() {
+        return confidenceLevel;
+    }
+
+    public void setConfidenceLevel(Double confidenceLevel) {
+        this.confidenceLevel = confidenceLevel;
+    }
 }
