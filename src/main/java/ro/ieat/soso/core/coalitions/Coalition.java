@@ -1,6 +1,7 @@
 package ro.ieat.soso.core.coalitions;
 
 
+import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.jobs.ScheduledJob;
 import ro.ieat.soso.core.prediction.DurationPrediction;
 import ro.ieat.soso.core.time.LongIntervalNode;
@@ -13,6 +14,7 @@ import java.util.Map;
  * Created by adrian on 25.11.2015.
  */
 public class Coalition implements Comparable<Coalition>{
+    @Id
     private long id;
     private long rackId;
     private String logicJobName;
