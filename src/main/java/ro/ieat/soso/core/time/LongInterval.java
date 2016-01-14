@@ -17,6 +17,10 @@ public class LongInterval {
         this.high=high;
     }
 
+    public LongInterval(){
+
+    }
+
 
     public static long getInfinite(){
         return Long.MAX_VALUE;

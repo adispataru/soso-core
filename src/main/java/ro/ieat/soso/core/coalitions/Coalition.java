@@ -6,9 +6,7 @@ import ro.ieat.soso.core.jobs.ScheduledJob;
 import ro.ieat.soso.core.prediction.DurationPrediction;
 import ro.ieat.soso.core.time.LongIntervalNode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by adrian on 25.11.2015.
@@ -111,10 +109,16 @@ public class Coalition implements Comparable<Coalition>{
     }
 
 
-    public List<LongIntervalNode> getIntervalNodesList(){
-      return this.intervalNodesList;
-    }
+   // public List<LongIntervalNode> getIntervalNodesList(){
+   //   return this.intervalNodesList;
+  //  }
 
+
+
+    public void sortIntervalNodesList(){
+
+        Collections.sort(this.intervalNodesList);
+    }
     public void setIntervalNodesList(List<LongIntervalNode> intervalNodesList){
         this.intervalNodesList=intervalNodesList;
     }

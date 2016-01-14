@@ -25,6 +25,9 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
 
     private List<Coalition> coalitionList=new ArrayList<>();
 
+    public LongIntervalNode(){
+
+    }
     public LongIntervalNode(LongInterval interval, Coalition c){
 
         this.key=interval.getLow();
