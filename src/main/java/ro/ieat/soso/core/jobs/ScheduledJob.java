@@ -6,7 +6,7 @@ import java.util.TreeMap;
 /**
  * Created by adrian on 08.12.2015.
  */
-public class ScheduledJob {
+public class ScheduledJob implements Comparable<ScheduledJob> {
 
     private long jobId;
     private long finishTime;
@@ -53,5 +53,14 @@ public class ScheduledJob {
 
     public void setTaskMachineMapping(Map<Long, Long> taskMachineMapping) {
         this.taskMachineMapping = taskMachineMapping;
+    }
+
+    @Override
+    public int compareTo(ScheduledJob sj) {
+        if(this.getTimeToStart()<sj.getTimeToStart())
+            return -1;
+        else if(this.getTimeToStart()==sj.getTimeToStart()){
+            return 0;
+        }else return 1;
     }
 }
