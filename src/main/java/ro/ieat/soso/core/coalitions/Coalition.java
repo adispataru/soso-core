@@ -112,7 +112,11 @@ public class Coalition implements Comparable<Coalition>{
 
 
     public List<LongIntervalNode> getIntervalNodesList(){
-        return this.intervalNodesList;
+      return this.intervalNodesList;
+    }
+
+    public void setIntervalNodesList(List<LongIntervalNode> intervalNodesList){
+        this.intervalNodesList=intervalNodesList;
     }
 
     public DurationPrediction getCurrentETA() {
