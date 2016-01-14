@@ -151,6 +151,7 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
     public Coalition binarySearch(long key){
 
 
+
         if(coalitionList.get(coalitionList.size()-1).getMachines().size()>=key) {
             int lo = 0;
             int hi = coalitionList.size() - 1;
