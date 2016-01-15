@@ -14,6 +14,9 @@ public class ScheduledJob implements Comparable<ScheduledJob> {
     private long timeToStart;
     private Map<Long, Long> taskMachineMapping = new TreeMap<Long, Long>();
 
+    private Job job;
+
+
 
     public long getTimeToStart() {
         return timeToStart;
@@ -62,5 +65,13 @@ public class ScheduledJob implements Comparable<ScheduledJob> {
         else if(this.getTimeToStart()==sj.getTimeToStart()){
             return 0;
         }else return 1;
+    }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
     }
 }

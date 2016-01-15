@@ -6,6 +6,10 @@ import ro.ieat.soso.core.jobs.ScheduledJob;
 import ro.ieat.soso.core.prediction.DurationPrediction;
 import ro.ieat.soso.core.time.LongIntervalNode;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -113,6 +117,23 @@ public class Coalition implements Comparable<Coalition>{
    //   return this.intervalNodesList;
   //  }
 
+    public void printIntervalNodesList(){
+
+        PrintWriter out = null;
+
+        try {
+            out = new PrintWriter(new BufferedWriter(new FileWriter("/home/teodora/Teodora/FGCS-Paper/New Folder/soso-matcher-scheduler/previousScheduled.out", true)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(LongIntervalNode l:intervalNodesList){
+
+            out.println(l.getInterval());
+            out.flush();
+        }
+        out.close();
+    }
 
 
     public void sortIntervalNodesList(){
@@ -137,5 +158,25 @@ public class Coalition implements Comparable<Coalition>{
 
     public void setConfidenceLevel(Double confidenceLevel) {
         this.confidenceLevel = confidenceLevel;
+    }
+
+    public LongIntervalNode searchByLow(Long value){
+
+        for(LongIntervalNode l:this.intervalNodesList){
+            if(l.getInterval().getLow()==value)
+                return l;
+        }
+
+        return null;
+    }
+
+    public LongIntervalNode searchByHigh(Long value){
+
+        for(LongIntervalNode l:this.intervalNodesList){
+            if(l.getInterval().getHigh()==value)
+                return l;
+        }
+
+        return null;
     }
 }
