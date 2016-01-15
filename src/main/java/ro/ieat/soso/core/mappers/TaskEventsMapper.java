@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by adrian on 18.11.2015.
@@ -71,6 +72,8 @@ public class TaskEventsMapper {
 
             if (!result.containsKey(jobId))
                 System.out.println(startTime + " " + endTime*1000000  + " " + timestamp + ";jobid: " + jobId);
+            if(result.get(jobId).getTaskHistory() == null)
+                result.get(jobId).setTaskHistory(new TreeMap<>());
             result.get(jobId).getTaskHistory().put(task.getTaskIndex(), task);
 
         }
