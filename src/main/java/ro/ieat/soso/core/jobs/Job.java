@@ -1,6 +1,7 @@
 package ro.ieat.soso.core.jobs;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.springframework.data.annotation.Id;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -10,6 +11,7 @@ import java.util.TreeMap;
  */
 public class Job {
 
+    @Id
     private long jobId;
     private String logicJobName;
     @JsonSerialize(as=Map.class)
@@ -48,8 +50,7 @@ public class Job {
         this.scheduleTime = job.scheduleTime;
         this.finishTime = job.finishTime;
         this.status = job.status;
-        this.taskHistory = new TreeMap<>();
-        if(noUsage == true) {
+        if(noUsage) {
             for (TaskHistory th : job.getTaskHistory().values()) {
                 this.taskHistory.put(th.getTaskIndex(), new TaskHistory(th));
             }

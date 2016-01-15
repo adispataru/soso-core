@@ -35,7 +35,7 @@ public class MachineUsageMapper {
         String[] tokens;
         long lastTask = 0;
         Machine machineProperties = new Machine();
-        machineProperties.setTaskUsageList(new ArrayList<TaskUsage>());
+        machineProperties.setTaskUsageList(new ArrayList<Long>());
         long machineId = Long.parseLong(file.getName());
         machineProperties.setId(machineId);
         TaskUsage taskUsage = new TaskUsage();
@@ -56,7 +56,7 @@ public class MachineUsageMapper {
 
             if (lastTask != taskIndex){
 
-                machineProperties.getTaskUsageList().add(taskUsage);
+                machineProperties.getTaskUsageList().add(taskUsage.getJobId());
                 taskUsage = new TaskUsage();
 
                 //mapping.add(machineProperties);
@@ -110,7 +110,7 @@ public class MachineUsageMapper {
         String[] tokens;
         long lastTask = 0;
         Machine machineProperties = new Machine();
-        machineProperties.setTaskUsageList(new ArrayList<TaskUsage>());
+        machineProperties.setTaskUsageList(new ArrayList<Long>());
         long machineId = Long.parseLong(file.getName());
         machineProperties.setId(machineId);
         TaskUsage taskUsage = new TaskUsage();
@@ -133,7 +133,7 @@ public class MachineUsageMapper {
 
             if (lastTask != taskIndex ){
 
-                machineProperties.getTaskUsageList().add(taskUsage);
+                machineProperties.getTaskUsageList().add(taskUsage.getJobId());
                 taskUsage = new TaskUsage();
 
                 //mapping.add(machineProperties);
@@ -177,7 +177,7 @@ public class MachineUsageMapper {
 
         }
         if(!inserted)
-            machineProperties.getTaskUsageList().add(taskUsage);
+            machineProperties.getTaskUsageList().add(taskUsage.getJobId());
         br.close();
         fileReader.close();
 

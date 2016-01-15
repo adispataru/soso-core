@@ -1,5 +1,6 @@
 package ro.ieat.soso.core.jobs;
 
+import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.coalitions.Usage;
 
 import java.util.ArrayList;
@@ -10,7 +11,8 @@ import java.util.List;
  */
 public class TaskUsage {
     private long taskIndex;
-
+    @Id
+    private long id;
     public TaskUsage(long taskIndex, long jobId, String logicJobName) {
         this.taskIndex = taskIndex;
         this.jobId = jobId;
@@ -22,6 +24,11 @@ public class TaskUsage {
         this.jobId = 0;
         this.logicJobName = "";
     }
+    private Long machineId;
+    private Long finishTime;
+    private Long startTime;
+
+
 
 
     private long jobId;
@@ -74,5 +81,37 @@ public class TaskUsage {
             if(!found)
                 usageList.add(u);
         }
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Long getMachineId() {
+        return machineId;
+    }
+
+    public void setMachineId(Long machineId) {
+        this.machineId = machineId;
+    }
+
+    public Long getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(Long finishTime) {
+        this.finishTime = finishTime;
+    }
+
+    public Long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Long startTime) {
+        this.startTime = startTime;
     }
 }

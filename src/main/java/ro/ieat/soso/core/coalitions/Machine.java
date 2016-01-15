@@ -1,6 +1,6 @@
 package ro.ieat.soso.core.coalitions;
 
-import ro.ieat.soso.core.jobs.TaskUsage;
+import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.prediction.DurationPrediction;
 import ro.ieat.soso.core.prediction.MachinePrediction;
 
@@ -13,12 +13,13 @@ import java.util.List;
  */
 public class Machine implements Serializable{
     private static final long serialVersionUID = 5494991936696578350L;
+    @Id
     private Long id;
     private MachinePrediction prediction;
     private DurationPrediction ETA;
     private Double cpu;
     private Double memory;
-    private List<TaskUsage> taskUsageList;
+    private List<Long> taskUsageList;
 
     public Machine(long id, double cpu, double mem){
         this.id = id;
@@ -54,13 +55,13 @@ public class Machine implements Serializable{
         this.memory = memory;
     }
 
-    public List<TaskUsage> getTaskUsageList() {
+    public List<Long> getTaskUsageList() {
         if(taskUsageList == null)
-            taskUsageList = new ArrayList<TaskUsage>();
+            taskUsageList = new ArrayList<Long>();
         return taskUsageList;
     }
 
-    public void setTaskUsageList(List<TaskUsage> taskUsageList) {
+    public void setTaskUsageList(List<Long> taskUsageList) {
         this.taskUsageList = taskUsageList;
     }
 
