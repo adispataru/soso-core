@@ -3,44 +3,106 @@ package ro.ieat.soso.core.jobs;
 import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.coalitions.Usage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by adrian on 09.12.2015.
+ * TaskUsage represents data regarding usage traces from google-cluster-data-2011-2.
  */
-public class TaskUsage {
+public class TaskUsage extends Usage {
+    private long jobId;
     private long taskIndex;
     @Id
     private long id;
+    private Long machineId;
+    private String logicJobName;
+    private double cpu;
+    private double memory;
+    private double disk;
+    private double maxCpu;
+    private double maxMemory;
+    private double maxDisk;
+
     public TaskUsage(long taskIndex, long jobId, String logicJobName) {
         this.taskIndex = taskIndex;
         this.jobId = jobId;
         this.logicJobName = logicJobName;
     }
 
-    public TaskUsage(){
+    public TaskUsage() {
         this.taskIndex = 0;
         this.jobId = 0;
         this.logicJobName = "";
     }
-    private Long machineId;
-    private Long finishTime;
-    private Long startTime;
 
-
-
-
-    private long jobId;
-    private String logicJobName;
-    private List<Usage> usageList = new ArrayList<Usage>();
-
-    public List<Usage> getUsageList() {
-        return usageList;
+    public TaskUsage(Long startTime, Long endTime, double cpu, double mem, double disk) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.cpu = cpu;
+        this.memory = mem;
+        this.disk = disk;
     }
 
-    public void setUsageList(List<Usage> usageList) {
-        this.usageList = usageList;
+    public double getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(double cpu) {
+        this.cpu = cpu;
+    }
+
+    public void addCpu(double cpu) {
+        this.cpu += cpu;
+    }
+
+    public double getMemory() {
+        return memory;
+    }
+
+    public void setMemory(double memory) {
+        this.memory = memory;
+    }
+
+    public void addMemory(double memory) {
+        this.memory += memory;
+    }
+
+    public double getDisk() {
+        return disk;
+    }
+
+    public void setDisk(double disk) {
+        this.disk = disk;
+    }
+
+    public double getMaxCpu() {
+        return maxCpu;
+    }
+
+    public void setMaxCpu(double maxCpu) {
+        this.maxCpu = maxCpu;
+    }
+
+    public void addMaxCpu(double maxCpu) {
+        this.maxCpu += maxCpu;
+    }
+
+    public double getMaxMemory() {
+        return maxMemory;
+    }
+
+    public void setMaxMemory(double maxMemory) {
+        this.maxMemory = maxMemory;
+    }
+
+    public void addMaxMemory(double maxMemory) {
+        this.maxMemory += maxMemory;
+    }
+
+    public double getMaxDisk() {
+        return maxDisk;
+    }
+
+    public void setMaxDisk(double maxDisk) {
+        this.maxDisk = maxDisk;
     }
 
     public long getTaskIndex() {
@@ -67,21 +129,6 @@ public class TaskUsage {
         this.logicJobName = logicJobName;
     }
 
-    public void combineUsage(TaskUsage t){
-        for(Usage u : t.getUsageList()) {
-            boolean found = false;
-            for (int i = 0; !found && i < usageList.size(); i++) {
-                if(usageList.get(i).getStartTime() == u.getStartTime())
-                    break;
-                if (usageList.get(i).getStartTime() > u.getStartTime()){
-                    found = true;
-                    usageList.add(i, u);
-                }
-            }
-            if(!found)
-                usageList.add(u);
-        }
-    }
 
     public long getId() {
         return id;
@@ -97,21 +144,5 @@ public class TaskUsage {
 
     public void setMachineId(Long machineId) {
         this.machineId = machineId;
-    }
-
-    public Long getFinishTime() {
-        return finishTime;
-    }
-
-    public void setFinishTime(Long finishTime) {
-        this.finishTime = finishTime;
-    }
-
-    public Long getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Long startTime) {
-        this.startTime = startTime;
     }
 }

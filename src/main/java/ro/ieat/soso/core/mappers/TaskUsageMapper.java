@@ -1,16 +1,13 @@
 package ro.ieat.soso.core.mappers;
 
 
-import ro.ieat.soso.core.coalitions.Usage;
-import ro.ieat.soso.core.jobs.Job;
-import ro.ieat.soso.core.jobs.TaskHistory;
 import ro.ieat.soso.core.jobs.TaskUsage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -22,9 +19,9 @@ public class TaskUsageMapper  {
     private static Pattern pattern = Pattern.compile(",");
     private static long counter = 0;
 
-    public static void map(FileReader fileReader, Map<Long, Job> result, long start, long end) throws IOException, InterruptedException {
+    public static List<TaskUsage> map(FileReader fileReader, long start, long end) throws IOException, InterruptedException {
 
-
+        List<TaskUsage> result = new ArrayList<>();
         BufferedReader br = new BufferedReader(fileReader);
 
         long startTime;
@@ -50,7 +47,7 @@ public class TaskUsageMapper  {
             if(startTime <   start * 1000000)
                 continue;
             if(endTime > end * 1000000)
-                return;
+                return result;
 
             jobId = Long.parseLong(tokens[2]);
             taskIndex = Long.parseLong(tokens[3]);
@@ -71,31 +68,23 @@ public class TaskUsageMapper  {
 
             }
 
-            Usage usage = new Usage(startTime, endTime, cpu, mem, disk);
+            TaskUsage usage = new TaskUsage(startTime, endTime, cpu, mem, disk);
             usage.setMaxCpu(maxCpu);
             usage.setMaxMemory(maxMemory);
             usage.setMaxDisk(maxDisk);
+            usage.setJobId(jobId);
+            usage.setTaskIndex(taskIndex);
+            usage.setMachineId(machine);
 
-
-            TaskUsage task = new TaskUsage(taskIndex, jobId, result.get(jobId).getLogicJobName());
-            ArrayList<Usage> usages = new ArrayList<>();
-            usages.add(usage);
-            task.setUsageList(usages);
 
 //            if (!result.containsKey(jobId))
 //                result.put(jobId, new ArrayList<JobWritable>());
             //Assume it exitsts already.
-            TaskHistory t = result.get(jobId).getTaskHistory().get(taskIndex);
-            if(t.getTaskIndex() == taskIndex)
-                if(t.getTaskUsage() != null) {
-                    t.getTaskUsage().combineUsage(task);
-                }else{
-                    t.setTaskUsage(task);
-                }
+            result.add(usage);
 
         }
         br.close();
         fileReader.close();
-
+        return result;
     }
 }

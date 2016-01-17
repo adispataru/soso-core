@@ -1,12 +1,9 @@
 package ro.ieat.soso.core.jobs;
 
 
-import ro.ieat.soso.core.coalitions.Usage;
-
-import java.util.ArrayList;
-
 /**
  * Created by adrian on 23.11.2015.
+ * Class used for storing information about a task as defined in cluster-data-2011-2 from google.
  */
 public class TaskHistory {
 
@@ -20,7 +17,6 @@ public class TaskHistory {
     private double requestedCPU;
     private double requestedMemory;
     private double requestedDisk;
-    private TaskUsage taskUsage;
 
 
     public TaskHistory(){
@@ -133,35 +129,7 @@ public class TaskHistory {
     }
 
     public static TaskHistory combineTasks(TaskHistory t1, TaskHistory t2){
-        ArrayList<Usage> sorted = new ArrayList<Usage>();
 
-        //sorted.addAll(t1.getUsageMap());
-        for(Usage u : t1.getTaskUsage().getUsageList()) {
-            boolean found = false;
-            for (int i = 0; !found && i < sorted.size(); i++) {
-                if(sorted.get(i).getStartTime() == u.getStartTime())
-                    break;
-                if (sorted.get(i).getStartTime() > u.getStartTime()){
-                    found = true;
-                    sorted.add(i, u);
-                }
-            }
-            if(!found)
-                sorted.add(u);
-        }
-        for(Usage u : t2.getTaskUsage().getUsageList()) {
-            boolean found = false;
-            for (int i = 0; !found && i < sorted.size(); i++) {
-                if(sorted.get(i).getStartTime() == u.getStartTime())
-                    break;
-                if (sorted.get(i).getStartTime() > u.getStartTime()){
-                    found = true;
-                    sorted.add(i, u);
-                }
-            }
-            if(!found)
-                sorted.add(u);
-        }
 
         if(t1.getMachineId() == 0 && t2.getMachineId() != 0)
             //System.out.print("Tasks are combined " + t1.getMachineId() + ", " + t2.getMachineId() + "=");
@@ -178,22 +146,7 @@ public class TaskHistory {
         result.setStatus(t1.getStatus().length() > t2.getStatus().length() ? t1.getStatus() : t2.getStatus());
         result.setTaskIndex(t1.getTaskIndex());
 
-        TaskUsage taskUsage1 = new TaskUsage();
-        taskUsage1.setUsageList(sorted);
-
-        result.setTaskUsage(taskUsage1);
-
-        if (result.getMachineId() == 0)
-            System.out.print(result.getMachineId() + "\n");
-
         return result;
     }
 
-    public TaskUsage getTaskUsage() {
-        return taskUsage;
-    }
-
-    public void setTaskUsage(TaskUsage taskUsage) {
-        this.taskUsage = taskUsage;
-    }
 }

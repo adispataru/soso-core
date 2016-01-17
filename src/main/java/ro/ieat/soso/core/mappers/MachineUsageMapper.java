@@ -2,7 +2,6 @@ package ro.ieat.soso.core.mappers;
 
 
 import ro.ieat.soso.core.coalitions.Machine;
-import ro.ieat.soso.core.coalitions.Usage;
 import ro.ieat.soso.core.config.Configuration;
 import ro.ieat.soso.core.jobs.TaskUsage;
 
@@ -15,7 +14,10 @@ import java.util.List;
 
 /**
  * Created by adrian on 07.12.2015.
+ * Class to map machine usage to internal representation
+ *
  */
+@Deprecated
 public class MachineUsageMapper {
 
     /**
@@ -35,12 +37,13 @@ public class MachineUsageMapper {
         String[] tokens;
         long lastTask = 0;
         Machine machineProperties = new Machine();
-        machineProperties.setTaskUsageList(new ArrayList<Long>());
+        machineProperties.setTaskUsageList(new ArrayList<>());
         long machineId = Long.parseLong(file.getName());
         machineProperties.setId(machineId);
         TaskUsage taskUsage = new TaskUsage();
 
 
+        List<TaskUsage> taskUsageList = new ArrayList<>();
         while ((line = br.readLine()) != null) {
             tokens = line.split(",");
             long taskIndex = Long.parseLong(tokens[8]);
@@ -65,11 +68,12 @@ public class MachineUsageMapper {
                 taskUsage.setJobId(jobId);
                 taskUsage.setLogicJobName(logic);
                 taskUsage.setTaskIndex(taskIndex);
-                taskUsage.setUsageList(new ArrayList<Usage>());
+                //Store list statically
+                taskUsageList = new ArrayList<>();
 
             }
 
-            Usage usage = new Usage();
+            TaskUsage usage = new TaskUsage();
             usage.setStartTime(Long.parseLong(tokens[0]));
             usage.setEndTime(Long.parseLong(tokens[1]));
             usage.setCpu(Double.parseDouble(tokens[2]));
@@ -80,7 +84,7 @@ public class MachineUsageMapper {
             usage.setMaxDisk(Double.parseDouble(tokens[7]));
 
             if(usage.getStartTime()/ Configuration.TIME_DIVISOR % Configuration.STEP != 0){
-                for (Usage usage2 : taskUsage.getUsageList()){
+                for (TaskUsage usage2 : taskUsageList){
                     if(usage2.getEndTime() == usage.getStartTime()){
                         usage2.setEndTime(usage.getEndTime());
                         usage2.setCpu(Math.max(usage.getCpu(), usage2.getCpu()));
@@ -93,7 +97,7 @@ public class MachineUsageMapper {
                     }
                 }
             }else {
-                taskUsage.getUsageList().add(usage);
+                taskUsageList.add(usage);
             }
 
         }
@@ -110,7 +114,7 @@ public class MachineUsageMapper {
         String[] tokens;
         long lastTask = 0;
         Machine machineProperties = new Machine();
-        machineProperties.setTaskUsageList(new ArrayList<Long>());
+        machineProperties.setTaskUsageList(new ArrayList<>());
         long machineId = Long.parseLong(file.getName());
         machineProperties.setId(machineId);
         TaskUsage taskUsage = new TaskUsage();
@@ -118,6 +122,7 @@ public class MachineUsageMapper {
 
         boolean inserted = true;
 
+        List<TaskUsage> taskUsageList = new ArrayList<>();
         while ((line = br.readLine()) != null) {
             tokens = line.split(",");
             long taskIndex = Long.parseLong(tokens[8]);
@@ -142,12 +147,12 @@ public class MachineUsageMapper {
                 taskUsage.setJobId(jobId);
                 taskUsage.setLogicJobName(logic);
                 taskUsage.setTaskIndex(taskIndex);
-                taskUsage.setUsageList(new ArrayList<Usage>());
+                taskUsageList = new ArrayList<>();
                 inserted = false;
 
             }
 
-            Usage usage = new Usage();
+            TaskUsage usage = new TaskUsage();
             usage.setStartTime(Long.parseLong(tokens[0]));
             usage.setEndTime(Long.parseLong(tokens[1]));
             usage.setCpu(Double.parseDouble(tokens[2]));
@@ -159,7 +164,7 @@ public class MachineUsageMapper {
 
 
             if(usage.getStartTime() / Configuration.TIME_DIVISOR % Configuration.STEP != 0){
-                for (Usage usage2 : taskUsage.getUsageList()){
+                for (TaskUsage usage2 : taskUsageList){
                     if(usage2.getEndTime() == usage.getStartTime()){
                         usage2.setEndTime(usage.getEndTime());
                         usage2.setCpu(Math.max(usage.getCpu(), usage2.getCpu()));
@@ -172,7 +177,7 @@ public class MachineUsageMapper {
                     }
                 }
             }else {
-                taskUsage.getUsageList().add(usage);
+                taskUsageList.add(usage);
             }
 
         }
