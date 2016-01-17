@@ -81,13 +81,6 @@ public class Usage {
         this.maxDisk = maxDisk;
     }
 
-    public boolean isMeasured() {
-        return measured;
-    }
-
-    public void setMeasured(boolean measured) {
-        this.measured = measured;
-    }
 
     private long startTime;
     private long endTime;
@@ -97,7 +90,6 @@ public class Usage {
     private double maxCpu;
     private double maxMemory;
     private double maxDisk;
-    private boolean measured;
 
     public Usage(){
         this.startTime = 0;
@@ -108,7 +100,6 @@ public class Usage {
         this.maxCpu = .0;
         this.maxMemory = .0;
         this.maxDisk = .0;
-        measured = false;
     }
 
     public Usage(long startTime, long endTime, double cpu, double memory, double disk){
@@ -117,7 +108,6 @@ public class Usage {
         this.cpu = cpu;
         this.memory = memory;
         this.disk = disk;
-        measured = true;
     }
 
 
