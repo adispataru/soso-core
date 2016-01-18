@@ -67,7 +67,6 @@ public class TaskUsageMapper  {
                     maxDisk = Double.parseDouble(tokens[14]);
 
             }
-
             TaskUsage usage = new TaskUsage(startTime, endTime, cpu, mem, disk);
             usage.setMaxCpu(maxCpu);
             usage.setMaxMemory(maxMemory);
