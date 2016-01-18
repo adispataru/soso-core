@@ -21,6 +21,7 @@ public class TaskUsage extends Usage implements Predictable{
     private double maxCpu;
     private double maxMemory;
     private double maxDisk;
+    private Long assignedMachineId;
 
     public TaskUsage(long taskIndex, long jobId, String logicJobName) {
         this.taskIndex = taskIndex;
@@ -40,6 +41,7 @@ public class TaskUsage extends Usage implements Predictable{
         this.maxMemory = .0;
         this.disk = .0;
         this.maxDisk = .0;
+        assignedMachineId = 0L;
     }
 
     public void addTaskUsage(TaskUsage taskUsage){
@@ -162,5 +164,13 @@ public class TaskUsage extends Usage implements Predictable{
 
     public void setMachineId(Long machineId) {
         this.machineId = machineId;
+    }
+
+    public Long getAssignedMachineId() {
+        return assignedMachineId;
+    }
+
+    public void setAssignedMachineId(Long assignedMachineId) {
+        this.assignedMachineId = assignedMachineId;
     }
 }
