@@ -32,6 +32,21 @@ public class TaskUsage extends Usage implements Predictable{
         this.taskIndex = 0;
         this.jobId = 0;
         this.logicJobName = "";
+        this.cpu = .0;
+        this.maxCpu = .0;
+        this.memory = .0;
+        this.maxMemory = .0;
+        this.disk = .0;
+        this.maxDisk = .0;
+    }
+
+    public void addTaskUsage(TaskUsage taskUsage){
+        this.cpu += taskUsage.getCpu();
+        this.maxCpu += taskUsage.getMaxCpu();
+        this.memory += taskUsage.getMemory();
+        this.maxMemory += taskUsage.getMaxMemory();
+        this.disk += taskUsage.getDisk();
+        this.maxDisk += taskUsage.getMaxDisk();
     }
 
     public TaskUsage(Long startTime, Long endTime, double cpu, double mem, double disk) {
