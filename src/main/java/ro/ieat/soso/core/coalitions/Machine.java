@@ -2,14 +2,15 @@ package ro.ieat.soso.core.coalitions;
 
 import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.jobs.TaskUsage;
+import ro.ieat.soso.core.prediction.Duration;
 
 import java.io.Serializable;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by adrian on 25.11.2015.
+ * Used to represent machine data from google traces.
  */
 public class Machine implements Serializable{
     private static final long serialVersionUID = 5494991936696578350L;

@@ -53,6 +53,15 @@ public class TaskUsage extends Usage implements Predictable{
         this.maxDisk += taskUsage.getMaxDisk();
     }
 
+    public void substractTaskUsage(TaskUsage taskUsage){
+        this.cpu -= taskUsage.getCpu();
+        this.maxCpu -= taskUsage.getMaxCpu();
+        this.memory -= taskUsage.getMemory();
+        this.maxMemory -= taskUsage.getMaxMemory();
+        this.disk -= taskUsage.getDisk();
+        this.maxDisk -= taskUsage.getMaxDisk();
+    }
+
     public TaskUsage(Long startTime, Long endTime, double cpu, double mem, double disk) {
         this.startTime = startTime;
         this.endTime = endTime;
@@ -172,5 +181,18 @@ public class TaskUsage extends Usage implements Predictable{
 
     public void setAssignedMachineId(Long assignedMachineId) {
         this.assignedMachineId = assignedMachineId;
+    }
+
+    public String loadForPlot(){
+        return "" + cpu + " " + maxCpu + " " + memory + " " + maxMemory + " " + disk  + " " + maxDisk;
+    }
+
+    public void divide(int l){
+        this.cpu /= l;
+        this.maxCpu /= l;
+        this.memory /= l;
+        this.maxMemory /= l;
+        this.disk /= l;
+        this.maxDisk /= l;
     }
 }
