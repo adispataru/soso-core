@@ -7,5 +7,5 @@ import java.util.List;
  * interface to be implemented by prediction methods.
  */
 public interface PredictionMethod {
-    Predictable predict(List<Predictable> data);
+    Predictable predict(List<? extends Predictable> data);
 }

@@ -3,14 +3,17 @@ package ro.ieat.soso.core.coalitions;
 
 import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.jobs.ScheduledJob;
-import ro.ieat.soso.core.prediction.DurationPrediction;
+import ro.ieat.soso.core.prediction.Duration;
 import ro.ieat.soso.core.time.LongIntervalNode;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by adrian on 25.11.2015.
@@ -25,7 +28,7 @@ public class Coalition implements Comparable<Coalition>{
     private Map<String, Long> jobs;
     private List<ScheduledJob> scheduledJobs=new ArrayList<>();
     private List<LongIntervalNode> intervalNodesList=new ArrayList<>();
-    private DurationPrediction currentETA;
+    private Duration currentETA;
     private Double confidenceLevel;
 
 
@@ -144,11 +147,11 @@ public class Coalition implements Comparable<Coalition>{
         this.intervalNodesList=intervalNodesList;
     }
 
-    public DurationPrediction getCurrentETA() {
+    public Duration getCurrentETA() {
         return currentETA;
     }
 
-    public void setCurrentETA(DurationPrediction currentETA) {
+    public void setCurrentETA(Duration currentETA) {
         this.currentETA = currentETA;
     }
 

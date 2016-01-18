@@ -9,14 +9,12 @@ public class MachinePrediction {
     private long endTime;
     private Double maxMemory;
     private Double maxCPU;
-    private Double minMemory;
-    private Double minCPU;
-    private Double averageMemory;
-    private Double averageCPU;
-    private Double histogramMemory;
-    private Double histogramCPU;
+    private Double memory;
+    private Double cpu;
+    private Double maxDisk;
+    private Double disk;
 
-    public MachinePrediction(){
+    public MachinePrediction() {
 
     }
 
@@ -53,51 +51,36 @@ public class MachinePrediction {
         this.maxCPU = maxCPU;
     }
 
-    public Double getMinMemory() {
-        return minMemory;
+    public Double getMemory() {
+        return memory;
     }
 
-    public void setMinMemory(Double minMemory) {
-        this.minMemory = minMemory;
+    public void setMemory(Double memory) {
+        this.memory = memory;
     }
 
-    public Double getMinCPU() {
-        return minCPU;
+    public Double getCpu() {
+        return cpu;
     }
 
-    public void setMinCPU(Double minCPU) {
-        this.minCPU = minCPU;
+    public void setCpu(Double cpu) {
+        this.cpu = cpu;
     }
 
-    public Double getAverageMemory() {
-        return averageMemory;
+    public Double getMaxDisk() {
+        return maxDisk;
     }
 
-    public void setAverageMemory(Double averageMemory) {
-        this.averageMemory = averageMemory;
+    public void setMaxDisk(Double maxDisk) {
+        this.maxDisk = maxDisk;
     }
 
-    public Double getAverageCPU() {
-        return averageCPU;
+    public Double getDisk() {
+        return disk;
     }
 
-    public void setAverageCPU(Double averageCPU) {
-        this.averageCPU = averageCPU;
-    }
-
-    public Double getHistogramMemory() {
-        return histogramMemory;
-    }
-
-    public void setHistogramMemory(Double histogramMemory) {
-        this.histogramMemory = histogramMemory;
-    }
-
-    public Double getHistogramCPU() {
-        return histogramCPU;
-    }
-
-    public void setHistogramCPU(Double histogramCPU) {
-        this.histogramCPU = histogramCPU;
+    public void setDisk(Double disk) {
+        this.disk = disk;
     }
 }
+
