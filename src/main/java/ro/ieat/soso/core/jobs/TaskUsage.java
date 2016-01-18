@@ -2,12 +2,13 @@ package ro.ieat.soso.core.jobs;
 
 import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.coalitions.Usage;
+import ro.ieat.soso.core.prediction.Predictable;
 
 /**
  * Created by adrian on 09.12.2015.
  * TaskUsage represents data regarding usage traces from google-cluster-data-2011-2.
  */
-public class TaskUsage extends Usage {
+public class TaskUsage extends Usage implements Predictable{
     private long jobId;
     private long taskIndex;
     @Id
