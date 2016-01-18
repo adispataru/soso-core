@@ -29,6 +29,8 @@ public class TaskUsage extends Usage implements Predictable{
     }
 
     public TaskUsage() {
+        this.startTime = 0L;
+        this.endTime = 0L;
         this.taskIndex = 0;
         this.jobId = 0;
         this.logicJobName = "";
