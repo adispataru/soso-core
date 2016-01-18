@@ -2,7 +2,6 @@ package ro.ieat.soso.core.coalitions;
 
 import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.jobs.TaskUsage;
-import ro.ieat.soso.core.prediction.Duration;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class Machine implements Serializable{
     @Id
     private Long id;
     private TaskUsage usagePrediction;
-    private Duration ETA;
+    private Long ETA;
     private Double cpu;
     private Double memory;
     private List<Long> taskUsageList;
@@ -67,11 +66,11 @@ public class Machine implements Serializable{
     }
 
 
-    public Duration getETA() {
+    public Long getETA() {
         return ETA;
     }
 
-    public void setETA(Duration ETA) {
+    public void setETA(Long ETA) {
         this.ETA = ETA;
     }
 
