@@ -79,6 +79,7 @@ public class TaskUsageMapper  {
 //            if (!result.containsKey(jobId))
 //                result.put(jobId, new ArrayList<JobWritable>());
             //Assume it exitsts already.
+            usage.setId(counter++);
             result.add(usage);
 
         }

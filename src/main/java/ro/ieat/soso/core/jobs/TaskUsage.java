@@ -195,4 +195,19 @@ public class TaskUsage extends Usage implements Predictable{
         this.disk /= l;
         this.maxDisk /= l;
     }
+
+    public void divideCPU(double l){
+        this.cpu /= l;
+        this.maxCpu /= l;
+    }
+
+    public void divideMemory(double l){
+        this.memory /= l;
+        this.maxMemory /= l;
+    }
+
+    public void divideDisk(double l){
+        this.disk /= l;
+        this.maxDisk /= l;
+    }
 }
