@@ -124,7 +124,7 @@ public class Coalition implements Comparable<Coalition>{
         PrintWriter out = null;
 
         try {
-            out = new PrintWriter(new BufferedWriter(new FileWriter("/home/teodora/Teodora/FGCS-Paper/New Folder/soso-matcher-scheduler/previousScheduled.out", true)));
+            out = new PrintWriter(new BufferedWriter(new FileWriter("./previousScheduled.out", true)));
         } catch (IOException e) {
             e.printStackTrace();
         }
