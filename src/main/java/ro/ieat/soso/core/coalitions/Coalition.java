@@ -23,7 +23,7 @@ public class Coalition implements Comparable<Coalition>{
     private long rackId;
     private String logicJobName;
     private long scheduleClass;
-    private List<Long> machines=new ArrayList<>();
+    private List<Machine> machines=new ArrayList<>();
     private Map<String, Long> jobs;
     private List<ScheduledJob> scheduledJobs=new ArrayList<>();
     private List<LongIntervalNode> intervalNodesList=new ArrayList<>();
@@ -51,11 +51,11 @@ public class Coalition implements Comparable<Coalition>{
         this.scheduledJobs.add(sJob);
     }
 
-    public List<Long> getMachines() {
+    public List<Machine> getMachines() {
         return machines;
     }
 
-    public void setMachines(List<Long> machines) {
+    public void setMachines(List<Machine> machines) {
         this.machines = machines;
     }
 

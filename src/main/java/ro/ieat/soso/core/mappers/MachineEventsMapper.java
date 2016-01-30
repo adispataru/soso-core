@@ -1,6 +1,6 @@
 package ro.ieat.soso.core.mappers;
 
-import javafx.util.Pair;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -36,9 +36,35 @@ public class MachineEventsMapper {
             Double cpu = Double.parseDouble(tokens[4]);
             Double mem = Double.parseDouble(tokens[5]);
 
-            MACHINES.put(machineId, new Pair<>(cpu, mem));
+            MACHINES.put(machineId, new Pair<Double, Double>(cpu, mem));
         }
         br.close();
         fileReader.close();
+    }
+
+    public static class Pair<T, T1> {
+        private T key;
+        private T1 value;
+
+        public Pair(T t1, T1 t12){
+            this.key = t1;
+            this.value = t12;
+        }
+
+        public T getKey() {
+            return key;
+        }
+
+        public void setKey(T key) {
+            this.key = key;
+        }
+
+        public T1 getValue() {
+            return value;
+        }
+
+        public void setValue(T1 value) {
+            this.value = value;
+        }
     }
 }
