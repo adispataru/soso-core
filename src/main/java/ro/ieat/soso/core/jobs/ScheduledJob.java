@@ -1,5 +1,7 @@
 package ro.ieat.soso.core.jobs;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -8,10 +10,13 @@ import java.util.TreeMap;
  */
 public class ScheduledJob implements Comparable<ScheduledJob> {
 
+    @Id
+    private long id;
     private long jobId;
     private long finishTime;
     private long submitTime;
     private long timeToStart;
+    private String scheduleType;
     private Map<Long, Long> taskMachineMapping = new TreeMap<Long, Long>();
 
     private Job job;
@@ -73,5 +78,21 @@ public class ScheduledJob implements Comparable<ScheduledJob> {
 
     public void setJob(Job job) {
         this.job = job;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getScheduleType() {
+        return scheduleType;
+    }
+
+    public void setScheduleType(String scheduleType) {
+        this.scheduleType = scheduleType;
     }
 }
