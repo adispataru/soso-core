@@ -92,7 +92,8 @@ public class Job {
     @Override
     public String toString(){
 
-        return String.valueOf(jobId) + "," + logicJobName + "," + submitTime + "," + scheduleTime + "," + finishTime + "," + status + "," + taskHistory.size();
+        int size = taskHistory != null ? taskHistory.size(): 0;
+        return String.valueOf(jobId) + "," + logicJobName + "," + submitTime + "," + scheduleTime + "," + finishTime + "," + status + "," + size;
     }
 
     public long getScheduleClass() {
