@@ -111,7 +111,18 @@ public class Coalition implements Comparable<Coalition>{
 
     public void removeIntervalNode(LongIntervalNode i){
 
-        intervalNodesList.remove(i);
+        int index=-1;
+        for(LongIntervalNode ii:intervalNodesList){
+            if(ii.getInterval().getLow()==i.getInterval().getLow() && ii.getInterval().getHigh()==i.getInterval().getHigh())
+                index=intervalNodesList.indexOf(ii);
+        }
+        if(index>=0)
+            this.intervalNodesList.remove(index);
+
+    }
+
+    public int IntervalNodesListSize(){
+        return  this.intervalNodesList.size();
     }
 
 
