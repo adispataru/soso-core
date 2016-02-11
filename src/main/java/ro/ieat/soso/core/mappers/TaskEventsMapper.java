@@ -26,7 +26,9 @@ public class TaskEventsMapper {
             long timestamp = Long.parseLong(tokens[0]);
             long jobId = Long.parseLong(tokens[2]);
             long taskIndex = Long.parseLong(tokens[3]);
-            long machineId = Long.parseLong(tokens[4]);
+            long machineId = 0;
+            if(!tokens[4].equals(""))
+                machineId = Long.parseLong(tokens[4]);
             int event = Integer.parseInt(tokens[5]);
 
             if(timestamp < startTime * 1000000)
@@ -71,7 +73,8 @@ public class TaskEventsMapper {
             TaskHistory task = new TaskHistory(taskIndex, submitTime, scheduleTime,
                     finishTime, status);
 
-            task.setMachineId(machineId);
+            if(machineId != 0)
+                task.setMachineId(machineId);
 
             if (!result.containsKey(jobId))
                 System.out.println(startTime + " " + endTime*1000000  + " " + timestamp + ";jobid: " + jobId);
