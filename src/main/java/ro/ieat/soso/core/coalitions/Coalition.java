@@ -3,6 +3,7 @@ package ro.ieat.soso.core.coalitions;
 
 import org.springframework.data.annotation.Id;
 import ro.ieat.soso.core.jobs.ScheduledJob;
+import ro.ieat.soso.core.time.LongInterval;
 import ro.ieat.soso.core.time.LongIntervalNode;
 
 import java.io.BufferedWriter;
@@ -126,9 +127,26 @@ public class Coalition implements Comparable<Coalition>{
     }
 
 
-   // public List<LongIntervalNode> getIntervalNodesList(){
-   //   return this.intervalNodesList;
-  //  }
+   public List<Long> getIntervalsKeys(){
+
+
+       List<Long> keyList=new ArrayList<>();
+
+       for(LongIntervalNode ii:intervalNodesList){
+           keyList.add(ii.getKey());
+       }
+        return keyList;
+   }
+
+    public List<LongInterval> getCoalitionIntervals(){
+
+        List<LongInterval> il=new ArrayList<>();
+
+        for(LongIntervalNode ii:intervalNodesList){
+            il.add(new LongInterval(ii.getInterval().getLow(),ii.getInterval().getHigh()));
+        }
+        return il;
+    }
 
     public void printIntervalNodesList(){
 
