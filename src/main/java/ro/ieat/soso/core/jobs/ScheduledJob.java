@@ -17,12 +17,20 @@ public class ScheduledJob implements Comparable<ScheduledJob> {
     private long submitTime;
     private long timeToStart;
     private String scheduleType;
+    private Long coalitionId;
     private Map<Long, Long> taskMachineMapping = new TreeMap<Long, Long>();
 
     private Job job;
 
 
 
+    public void setCoalitionId(Long coalitionId){
+        this.coalitionId=coalitionId;
+    }
+
+    public Long getCoalitionId(){
+        return coalitionId;
+    }
     public long getTimeToStart() {
         return timeToStart;
     }
