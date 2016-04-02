@@ -31,6 +31,15 @@ public class Coalition implements Comparable<Coalition>{
     private Long currentETA;
     private Double confidenceLevel;
 
+    private int machineSize=0;
+
+    public void setMachineSize(int m){
+        this.machineSize=m;
+    }
+
+    public int getMachineSize(){
+        return this.machineSize;
+    }
 
     public String getLogicJobName() {
         return logicJobName;
@@ -58,6 +67,8 @@ public class Coalition implements Comparable<Coalition>{
 
     public void setMachines(List<Machine> machines) {
         this.machines = machines;
+
+        machineSize=machines.size();
     }
 
     public Map<String, Long> getJobs() {

@@ -17,6 +17,8 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
     private long max;
     private long min;
 
+    private int maxResources=0;
+
     private long key;
 
     private boolean color;
@@ -36,6 +38,8 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
         this.right=null;
         this.p=null;
         coalitionList.add(c);
+        if(c.getMachineSize()>maxResources)
+            maxResources=c.getMachineSize();
         //  this.coalition=c;
 
         this.interval=interval;
@@ -46,6 +50,9 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
 
     public void addCoalition(Coalition c){
         coalitionList.add(c);
+
+        if(c.getMachineSize()>maxResources)
+            maxResources=c.getMachineSize();
 
         Collections.sort(coalitionList);
     }
@@ -59,7 +66,22 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
     }
 
     public void removeCoalition(Coalition c){
+
         coalitionList.remove(c);
+        maxResources=0;
+        for(Coalition cc:coalitionList)
+            if(maxResources<cc.getMachineSize())
+                maxResources=cc.getMachineSize();
+
+    }
+
+    public void resetMaxResources(){
+
+        maxResources=0;
+        for(Coalition cc:coalitionList)
+            if(maxResources<cc.getMachineSize())
+                maxResources=cc.getMachineSize();
+
     }
 
     public List<Coalition> getCoalitionList(){
@@ -88,6 +110,10 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
 
     public void setInterval(LongInterval interval) {
         this.interval = interval;
+    }
+
+    public void setKey(){
+        this.key=this.interval.getLow();
     }
 
     @Override
@@ -155,14 +181,14 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
 
 
 
-        if(coalitionList.get(coalitionList.size()-1).getMachines().size()>=key) {
+        if(coalitionList.get(coalitionList.size()-1).getMachineSize()>=key) {
             int lo = 0;
             int hi = coalitionList.size() - 1;
             while (lo <= hi) {
                 // Key is in a[lo..hi] or not present.
                 int mid = lo + (hi - lo) / 2;
-                if (key < coalitionList.get(mid).getMachines().size()) hi = mid - 1;
-                else if (key > coalitionList.get(mid).getMachines().size()) lo = mid + 1;
+                if (key < coalitionList.get(mid).getMachineSize()) hi = mid - 1;
+                else if (key > coalitionList.get(mid).getMachineSize()) lo = mid + 1;
                 else return coalitionList.get(mid);
             }
             return coalitionList.get(lo);
@@ -180,5 +206,13 @@ public class LongIntervalNode implements Comparable<LongIntervalNode> {
             return 0;
         else return 1;
 
+    }
+
+    public int getMaxResources() {
+        return maxResources;
+    }
+
+    public void setMaxResources(int maxResources) {
+        this.maxResources = maxResources;
     }
 }
