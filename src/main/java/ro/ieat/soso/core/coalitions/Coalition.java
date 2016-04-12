@@ -80,6 +80,10 @@ public class Coalition implements Comparable<Coalition>{
     }
 
 
+    public List<LongIntervalNode> getIntervals(){
+        return  intervalNodesList;
+    }
+
     public long getId() {
         return id;
     }
