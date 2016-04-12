@@ -151,6 +151,16 @@ public class Coalition implements Comparable<Coalition>{
         return keyList;
    }
 
+    public List<Long> getIntervalsKeys(){
+
+
+        List<Long> keyList=new ArrayList<>();
+        for(LongIntervalNode ii:intervalNodesList){
+                   keyList.add(ii.getKey());
+        }
+        return keyList;
+    }
+
     public List<LongInterval> getCoalitionIntervals(){
 
         List<LongInterval> il=new ArrayList<>();
