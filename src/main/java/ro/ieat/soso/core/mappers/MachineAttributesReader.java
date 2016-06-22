@@ -16,10 +16,8 @@ import java.util.*;
  */
 public class MachineAttributesReader {
 
-    private Map<String, Set<String>> attributesMap;
 
     public MachineAttributesReader(){
-        this.attributesMap = new HashMap<>(42);
     }
 
     public void map(FileReader fileReader, Map<Long, Machine> result, long startTime, long endTime) throws IOException, InterruptedException {
@@ -45,19 +43,10 @@ public class MachineAttributesReader {
                 result.get(machineId).getAttributes().add(machineAttribute);
             }
 
-            attributesMap.putIfAbsent(attrName, new HashSet<>());
-            attributesMap.get(attrName).add(attrValue);
 
         }
         br.close();
         fileReader.close();
     }
 
-    public Map<String, Set<String>> getAttributesMap() {
-        return attributesMap;
-    }
-
-    public void setAttributesMap(Map<String, Set<String>> attributesMap) {
-        this.attributesMap = attributesMap;
-    }
 }
