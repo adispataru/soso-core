@@ -1,13 +1,13 @@
 package ro.ieat.soso.core.mappers;
 
 
+import ro.ieat.soso.core.coalitions.Machine;
 import ro.ieat.soso.core.coalitions.MachineAttribute;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by adrian on 18.11.2015.
@@ -16,7 +16,13 @@ import java.util.Map;
  */
 public class MachineAttributesReader {
 
-    public static void map(FileReader fileReader, Map<String, MachineAttribute> result, long startTime, long endTime) throws IOException, InterruptedException {
+    private Map<String, Set<String>> attributesMap;
+
+    public MachineAttributesReader(){
+        this.attributesMap = new HashMap<>(42);
+    }
+
+    public void map(FileReader fileReader, Map<Long, Machine> result, long startTime, long endTime) throws IOException, InterruptedException {
 
         BufferedReader br = new BufferedReader(fileReader);
         String line;
@@ -32,33 +38,26 @@ public class MachineAttributesReader {
             if(timestamp > endTime * 1000000)
                 return;
 
-            MachineAttribute machineAttribute;
-            if (!result.containsKey(attrName)){
-                machineAttribute = new MachineAttribute();
-                machineAttribute.setName(attrName);
-                machineAttribute.setValues(new ArrayList<>());
-                result.put(attrName, machineAttribute);
+
+
+            MachineAttribute machineAttribute = new MachineAttribute(attrName, attrValue);
+            if(result.containsKey(machineId)){
+                result.get(machineId).getAttributes().add(machineAttribute);
             }
 
-            machineAttribute = result.get(attrName);
-            boolean hasValue = false;
-            for(MachineAttribute.MachineAttributeValue value : machineAttribute.getValues()){
-                if(value.getValue().equals(attrValue)){
-                    if(!value.getMachineList().contains(machineId))
-                        value.getMachineList().add(machineId);
-                    hasValue = true;
-                }
+            attributesMap.putIfAbsent(attrName, new HashSet<>());
+            attributesMap.get(attrName).add(attrValue);
 
-            }
-            if (!hasValue){
-                MachineAttribute.MachineAttributeValue v = new MachineAttribute.MachineAttributeValue();
-                v.setMachineList(new ArrayList<>());
-                v.getMachineList().add(machineId);
-                v.setValue(attrValue);
-                machineAttribute.getValues().add(v);
-            }
         }
         br.close();
         fileReader.close();
+    }
+
+    public Map<String, Set<String>> getAttributesMap() {
+        return attributesMap;
+    }
+
+    public void setAttributesMap(Map<String, Set<String>> attributesMap) {
+        this.attributesMap = attributesMap;
     }
 }

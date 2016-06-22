@@ -1,6 +1,7 @@
 package ro.ieat.soso.core.mappers;
 
 
+import ro.ieat.soso.core.jobs.Job;
 import ro.ieat.soso.core.jobs.TaskConstraint;
 
 import java.io.BufferedReader;
@@ -8,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -19,7 +21,7 @@ public class TaskConstraintReader {
     private static Pattern pattern = Pattern.compile(",");
     private static long counter = 0;
 
-    public static List<TaskConstraint> map(FileReader fileReader, long start, long end) throws IOException, InterruptedException {
+    public static List<TaskConstraint> map(FileReader fileReader, Map<Long, Job> jobs, long start, long end) throws IOException, InterruptedException {
 
         List<TaskConstraint> result = new ArrayList<>();
         BufferedReader br = new BufferedReader(fileReader);
@@ -40,9 +42,10 @@ public class TaskConstraintReader {
 
             jobId = Long.parseLong(tokens[1]);
             taskIndex = Long.parseLong(tokens[2]);
+            int op = Integer.parseInt(tokens[3]);
             String attrName = tokens[4];
-            String attrValue = tokens[5];
-            int op = Integer.parseInt(tokens[6]);
+            String attrValue = tokens.length > 5 ? tokens[5] : "";
+
 
             TaskConstraint taskConstraint = new TaskConstraint();
             taskConstraint.setAttributeName(attrName);
@@ -53,10 +56,8 @@ public class TaskConstraintReader {
             taskConstraint.setTimestamp(startTime);
 
 
-//            if (!result.containsKey(jobId))
-//                result.put(jobId, new ArrayList<JobWritable>());
-            //Assume it exitsts already.
-            result.add(taskConstraint);
+            jobs.get(jobId).getTaskHistory().get(taskIndex).getConstraints().add(taskConstraint);
+//            result.add(taskConstraint);
 
         }
         br.close();

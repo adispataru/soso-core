@@ -1,6 +1,9 @@
 package ro.ieat.soso.core.jobs;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by adrian on 23.11.2015.
  * Class used for storing information about a task as defined in cluster-data-2011-2 from google.
@@ -17,6 +20,7 @@ public class TaskHistory {
     private double requestedCPU;
     private double requestedMemory;
     private double requestedDisk;
+    private List<TaskConstraint> constraints;
 
 
     public TaskHistory(){
@@ -149,4 +153,14 @@ public class TaskHistory {
         return result;
     }
 
+    public List<TaskConstraint> getConstraints() {
+        if(constraints == null){
+            constraints = new ArrayList<>();
+        }
+        return constraints;
+    }
+
+    public void setConstraints(List<TaskConstraint> constraints) {
+        this.constraints = constraints;
+    }
 }

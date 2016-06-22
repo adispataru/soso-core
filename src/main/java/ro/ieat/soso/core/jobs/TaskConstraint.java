@@ -17,7 +17,7 @@ public class TaskConstraint {
     private String attributeValue;
     private int comparisonOperator;
 
-    private boolean satisfiesConstraint(MachineAttribute.MachineAttributeValue value){
+    private boolean satisfiesConstraint(MachineAttribute value){
         switch (comparisonOperator){
             case 0:
                 return attributeValue.equals(value.getValue());

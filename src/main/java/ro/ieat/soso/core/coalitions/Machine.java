@@ -20,6 +20,7 @@ public class Machine implements Serializable{
     private Double cpu;
     private Double memory;
     private List<Long> taskUsageList;
+    private List<MachineAttribute> attributes;
 
     public Machine(long id, double cpu, double mem){
         this.id = id;
@@ -81,5 +82,15 @@ public class Machine implements Serializable{
 
     public void setUsagePrediction(TaskUsage usagePrediction) {
         this.usagePrediction = usagePrediction;
+    }
+
+    public List<MachineAttribute> getAttributes() {
+        if(attributes == null)
+            attributes = new ArrayList<>(42);
+        return attributes;
+    }
+
+    public void setAttributes(List<MachineAttribute> attributes) {
+        this.attributes = attributes;
     }
 }

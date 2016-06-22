@@ -9,16 +9,12 @@ import java.util.List;
  * Class used to store machine attributes from google trace data.
  */
 public class MachineAttribute {
-    @Id
     private String name;
-    private List<MachineAttributeValue> values;
+    private String value;
 
-    public List<MachineAttributeValue> getValues() {
-        return values;
-    }
-
-    public void setValues(List<MachineAttributeValue> values) {
-        this.values = values;
+    public MachineAttribute(String attrName, String attrValue) {
+        this.name = attrName;
+        this.value = attrValue;
     }
 
     public String getName() {
@@ -29,29 +25,11 @@ public class MachineAttribute {
         this.name = name;
     }
 
-    /**
-     * Created by adrian on 18.01.2016.
-     * Data structure for representing a mapping between attribute values and machines that
-     * express them.
-     */
-    public static class MachineAttributeValue {
-        private String value;
-        private List<Long> machineList;
+    public String getValue() {
+        return value;
+    }
 
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
-
-        public List<Long> getMachineList() {
-            return machineList;
-        }
-
-        public void setMachineList(List<Long> machineList) {
-            this.machineList = machineList;
-        }
+    public void setValue(String value) {
+        this.value = value;
     }
 }
