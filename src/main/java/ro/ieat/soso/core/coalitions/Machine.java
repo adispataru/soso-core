@@ -38,7 +38,7 @@ public class Machine implements Serializable{
     }
 
     public Machine(long machineId, Double cpu, Double mem, long timestamp){
-        this.id = id;
+        this.id = machineId;
         this.cpu = cpu;
         this.memory = mem;
         Interval i = new Interval(timestamp, Long.MAX_VALUE);
