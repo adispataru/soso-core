@@ -126,4 +126,7 @@ public class Machine implements Serializable{
         return availabilityInterval;
     }
 
+    public void setAvailabilityInterval(List<Interval> availabilityInterval) {
+        this.availabilityInterval = availabilityInterval;
+    }
 }
