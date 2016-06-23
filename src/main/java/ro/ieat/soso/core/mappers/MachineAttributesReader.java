@@ -2,12 +2,11 @@ package ro.ieat.soso.core.mappers;
 
 
 import ro.ieat.soso.core.coalitions.Machine;
-import ro.ieat.soso.core.coalitions.MachineAttribute;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.Map;
 
 /**
  * Created by adrian on 18.11.2015.
@@ -16,9 +15,6 @@ import java.util.*;
  */
 public class MachineAttributesReader {
 
-
-    public MachineAttributesReader(){
-    }
 
     public void map(FileReader fileReader, Map<Long, Machine> result, long startTime, long endTime) throws IOException, InterruptedException {
 
@@ -36,11 +32,8 @@ public class MachineAttributesReader {
             if(timestamp > endTime * 1000000)
                 return;
 
-
-
-            MachineAttribute machineAttribute = new MachineAttribute(attrName, attrValue);
             if(result.containsKey(machineId)){
-                result.get(machineId).getAttributes().add(machineAttribute);
+                result.get(machineId).addAttribute(attrName, attrValue);
             }
 
 

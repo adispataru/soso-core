@@ -5,7 +5,9 @@ import ro.ieat.soso.core.jobs.TaskUsage;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by adrian on 25.11.2015.
@@ -20,7 +22,7 @@ public class Machine implements Serializable{
     private Double cpu;
     private Double memory;
     private List<Long> taskUsageList;
-    private List<MachineAttribute> attributes;
+    private Map<String, String> attributes;
 
     public Machine(long id, double cpu, double mem){
         this.id = id;
@@ -84,13 +86,18 @@ public class Machine implements Serializable{
         this.usagePrediction = usagePrediction;
     }
 
-    public List<MachineAttribute> getAttributes() {
+    public Map<String, String> getAttributes() {
         if(attributes == null)
-            attributes = new ArrayList<>(42);
+            attributes = new HashMap<>(42);
         return attributes;
     }
 
-    public void setAttributes(List<MachineAttribute> attributes) {
+    public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
+    }
+
+    public void addAttribute(String attr, String value){
+
+        getAttributes().put(attr, value);
     }
 }
