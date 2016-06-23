@@ -10,7 +10,6 @@ public class Interval {
     public Interval(long start, long end) {
         this.start = start;
         this.end = end;
-
     }
 
     public long getStart() {
