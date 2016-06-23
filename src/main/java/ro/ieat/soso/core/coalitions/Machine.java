@@ -43,6 +43,7 @@ public class Machine implements Serializable{
         this.memory = mem;
         Interval i = new Interval(timestamp, Long.MAX_VALUE);
         availabilityInterval = new ArrayList<>();
+        availabilityInterval.add(i);
 
     }
 
