@@ -28,7 +28,7 @@ public class Interval {
         this.end = end;
     }
 
-    private boolean contains(long l){
+    public boolean contains(long l){
         return start < l && l < end;
     }
 }
