@@ -50,8 +50,12 @@ public class MachineEventsMapper {
                     result.get(machineId).turnOff(timestamp);
                     break;
                 case 2:
-                    result.get(machineId).setCpu(cpu);
-                    result.get(machineId).setMemory(mem);
+                    if(result.containsKey(machineId)) {
+                        result.get(machineId).setCpu(cpu);
+                        result.get(machineId).setMemory(mem);
+                    }else{
+                        result.put(machineId, new Machine(machineId, cpu, mem, timestamp));
+                    }
                     break;
             }
         }
