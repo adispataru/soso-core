@@ -2,6 +2,8 @@ package ro.ieat.soso.core.mappers;
 
 
 
+import ro.ieat.soso.core.coalitions.Machine;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,9 +14,9 @@ import java.util.TreeMap;
  * Created by adrian on 07.12.2015.
  */
 public class MachineEventsMapper {
-    public static final Map<Long, Pair<Double, Double>> MACHINES = new TreeMap<>();
 
-    public static void map(FileReader fileReader, long start, long end) throws IOException, InterruptedException {
+
+    public static void map(FileReader fileReader, long start, long end, Map<Long, Machine> result) throws IOException, InterruptedException {
 
         BufferedReader br = new BufferedReader(fileReader);
         String line;
@@ -27,44 +29,33 @@ public class MachineEventsMapper {
             if(timestamp > end * 1000000)
                 return;
             long machineId = Long.parseLong(tokens[1]);
-            long event = Long.parseLong(tokens[2]);
+            int event = Integer.parseInt(tokens[2]);
 
-            if(event == 1 || tokens.length < 6)
+            if(tokens.length < 6)
                 continue;
 
             //System.out.println(line);
             Double cpu = Double.parseDouble(tokens[4]);
             Double mem = Double.parseDouble(tokens[5]);
 
-            MACHINES.put(machineId, new Pair<Double, Double>(cpu, mem));
+            switch (event){
+                case 0:
+                    if(result.get(machineId) == null) {
+                        result.put(machineId, new Machine(machineId, cpu, mem, timestamp));
+                    }else{
+                        result.get(machineId).turnOn(timestamp);
+                    }
+                    break;
+                case 1:
+                    result.get(machineId).turnOff(timestamp);
+                    break;
+                case 2:
+                    result.get(machineId).setCpu(cpu);
+                    result.get(machineId).setMemory(mem);
+                    break;
+            }
         }
         br.close();
         fileReader.close();
-    }
-
-    public static class Pair<T, T1> {
-        private T key;
-        private T1 value;
-
-        public Pair(T t1, T1 t12){
-            this.key = t1;
-            this.value = t12;
-        }
-
-        public T getKey() {
-            return key;
-        }
-
-        public void setKey(T key) {
-            this.key = key;
-        }
-
-        public T1 getValue() {
-            return value;
-        }
-
-        public void setValue(T1 value) {
-            this.value = value;
-        }
     }
 }

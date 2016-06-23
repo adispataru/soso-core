@@ -23,14 +23,22 @@ public class Machine implements Serializable{
     private Double memory;
     private List<Long> taskUsageList;
     private Map<String, String> attributes;
+    private List<Interval> availabilityInterval;
 
+    @Deprecated
     public Machine(long id, double cpu, double mem){
         this.id = id;
         this.cpu = cpu;
         this.memory = mem;
+        availabilityInterval = new ArrayList<>();
     }
 
-    public Machine(){
+    public Machine(long machineId, Double cpu, Double mem, long timestamp){
+        this.id = id;
+        this.cpu = cpu;
+        this.memory = mem;
+        Interval i = new Interval(timestamp, Long.MAX_VALUE);
+        availabilityInterval = new ArrayList<>();
 
     }
 
@@ -99,5 +107,16 @@ public class Machine implements Serializable{
     public void addAttribute(String attr, String value){
 
         getAttributes().put(attr, value);
+    }
+
+    public void turnOff(long timestamp) {
+        //get last interval and set its end to the timestamp
+        Interval i = availabilityInterval.get(availabilityInterval.size() - 1);
+        i.setEnd(timestamp);
+    }
+
+    public void turnOn(long timestamp){
+        Interval i = new Interval(timestamp, Long.MAX_VALUE);
+        availabilityInterval.add(i);
     }
 }
