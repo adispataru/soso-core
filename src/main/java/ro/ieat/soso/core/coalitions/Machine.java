@@ -119,4 +119,9 @@ public class Machine implements Serializable{
         Interval i = new Interval(timestamp, Long.MAX_VALUE);
         availabilityInterval.add(i);
     }
+
+    public List<Interval> getAvailabilityInterval() {
+        return availabilityInterval;
+    }
+
 }
