@@ -111,6 +111,8 @@ public class Machine implements Serializable{
 
     public void turnOff(long timestamp) {
         //get last interval and set its end to the timestamp
+        if(availabilityInterval.size() == 0)
+            return;
         Interval i = availabilityInterval.get(availabilityInterval.size() - 1);
         i.setEnd(timestamp);
     }
