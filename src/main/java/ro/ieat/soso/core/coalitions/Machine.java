@@ -25,6 +25,10 @@ public class Machine implements Serializable{
     private Map<String, String> attributes;
     private List<Interval> availabilityInterval;
 
+    public Machine(){
+
+    }
+
     @Deprecated
     public Machine(long id, double cpu, double mem){
         this.id = id;
