@@ -28,6 +28,7 @@ public class Coalition implements Comparable<Coalition>{
     private Map<String, Long> jobs;
     private List<ScheduledJob> scheduledJobs=new ArrayList<>();
     private List<LongIntervalNode> intervalNodesList=new ArrayList<>();
+    private Map<String, List<String>> attributeValues;
     private Long currentETA;
     private Double confidenceLevel;
 
@@ -233,5 +234,13 @@ public class Coalition implements Comparable<Coalition>{
 
     public void setCurrentETA(Long currentETA) {
         this.currentETA = currentETA;
+    }
+
+    public Map<String, List<String>> getAttributeValues() {
+        return attributeValues;
+    }
+
+    public void setAttributeValues(Map<String, List<String>> attributeValues) {
+        this.attributeValues = attributeValues;
     }
 }
